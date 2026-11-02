@@ -7,13 +7,8 @@ a new page by copying an existing one.
 It does not assume which components a site uses. It edits by field path (for example
 `content.seo.title`), so it works on any Storyblok space, whatever the page types are.
 
-**Status.** Written on 2 November 2026, building on the Spendesk uploader scripts, which
-have been used in production (new articles and refreshes published to Spendesk's
-Storyblok in August and September 2026). Those scripts used the same Storyblok Management
-API calls (fetch a story by slug or id, update it, create it, publish it). This tool is
-new code on top of them: the path editing, `clone` and the dry-run and backup behaviour
-are covered by offline tests only and have not yet been run against a live space. For the
-first real run on a client, use `ping`, then `list`, then `show`, and try `set` on one
+**Status.** The logic is covered by offline tests but has not yet been run against a live
+space. For the first real run, use `ping`, then `list`, then `show`, and try `set` on one
 draft page before anything else.
 
 ## What you need
@@ -138,9 +133,7 @@ Image and link fields keep the template's values until you change them with `--s
 
 - **Rich text.** Long text fields (headings, lists, FAQ answers in a rich text field) are
   stored as nested JSON. You can edit them by path, but there is no conversion from
-  markdown. The Spendesk uploader has one for blog articles, in the geo-local-apps repo at
-  `clients/spendesk/upload to storyblok/Upload to Storyblok code/create_article.py`. It
-  can be moved here if the new client needs it.
+  markdown. A markdown-to-rich-text converter can be added if it is needed.
 - **Images and files.** It does not upload assets. A copied page keeps the template's
   image ids.
 - **Translations.** Stories in other languages are treated as separate stories.
